@@ -1,3 +1,0 @@
-app_persons_records:
-  path: /seznam-polozek
-  controller: App\Controller\PersonController::list
