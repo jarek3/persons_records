@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="cs-cz">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="description" content="{% apply striptags %}{% block name %}{% endblock %}{% endapply %}"/>
+
+    {% block stylesheets %}
+        <link type="text/css" rel="stylesheet" href="{{ asset('css/style.css') }}">
+    {% endblock %}
+</head>
+<body>
+<header>
+    <h1>Elektronická evidence osob</h1>
+</header>
+
+{# Výpis zpráv. #}
+{% for type, flash_messages in app.session.flashBag.all %}
+    {% for flash_message in flash_messages %}
+        <div class="message">{{ flash_message }}</div>
+    {% endfor %}
+{% endfor %}
+
+<nav>
+    <ul>
+
+        <li><a href="{{ path('person_list') }}">Seznam položek</a></li>
+    </ul>
+</nav>
+<div style="clear: both"></div>
+
+<article>
+    <header>
+        <h1>{{ block('title') }}</h1>
+    </header>
+    <section>
+        {% block body %}{% endblock %} {# Vložení obsahu do šablony. #}
+    </section>
+</article>
+
+<footer>
+    <p>
+        <a href="https://symfony.com/" target="_blank">Created in the Symfony framework</a>
+    </p>
+</footer>
+
+{% block javascripts %}{% endblock %}
+</body>
+</html>
